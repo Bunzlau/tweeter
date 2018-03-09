@@ -10,7 +10,8 @@
 </head>
 <body>
 	<h1>Rejestracja</h1>
-	<form:form modelAttribute="user" method="post">
+	<form:form modelAttribute="user" method="post" action="user/register">
+		<form:errors path="*"></form:errors>
 		<form:input path="userName" placeholder="Username" />
 		<br>
 		<form:errors path="userName" />

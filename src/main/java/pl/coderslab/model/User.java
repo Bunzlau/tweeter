@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 public class User {
@@ -36,8 +37,7 @@ public class User {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
-		//hashowanie
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;

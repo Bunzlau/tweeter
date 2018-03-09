@@ -28,9 +28,11 @@ public class UserController {
 	@PostMapping("/register")
 	public String registerSave(@Valid User user, BindingResult result) {
 		if (result.hasErrors()) {
+			System.out.println("walidacja nie przesz³a");
 			return "form/user";
 		} 
+		System.out.println("Walidacja przesz³a");
 		userRepository.save(user);
-		return "redirect:";
+		return "redirect:/";
 	}
 }
