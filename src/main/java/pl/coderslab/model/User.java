@@ -1,9 +1,14 @@
 package pl.coderslab.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -16,6 +21,7 @@ public class User {
 	private long id;
 	
 	@NotBlank
+	@Column(unique = true)
 	private String userName;
 	
 	@NotBlank
@@ -23,7 +29,12 @@ public class User {
 	
 	private boolean enabled;
 	@Email
+	@Column(unique = true)
 	private String email;
+	
+	@OneToMany(mappedBy="user")
+	private List<Tweet> tweets = new ArrayList<Tweet>();
+	
 	public long getId() {
 		return id;
 	}
